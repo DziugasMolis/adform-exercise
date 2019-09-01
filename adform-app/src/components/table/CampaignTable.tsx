@@ -50,13 +50,13 @@ export const CampaignTable: React.FC<Props> = ({ campaignsTableData }) => {
 
   const thousandsInString = (budget: number) => {
     if (budget >= 1000000000) {
-      return (budget / 1000000000).toFixed(1).replace(/\.0$/, "") + "G";
+      return (budget / 1000000000).toFixed(1).replace(/\.0$/, "") + "G USD";
     }
     if (budget >= 1000000) {
-      return (budget / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+      return (budget / 1000000).toFixed(1).replace(/\.0$/, "") + "M USD";
     }
     if (budget >= 1000) {
-      return (budget / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+      return (budget / 1000).toFixed(1).replace(/\.0$/, "") + "K USD";
     }
     return budget;
   };
@@ -106,12 +106,12 @@ export const CampaignTable: React.FC<Props> = ({ campaignsTableData }) => {
           </th>
           <th scope="col" onClick={() => onColumnClick("endDate")}>
             End Date
-            {column === "name" && order === Order.ASC ? (
+            {column === "endDate" && order === Order.ASC ? (
               <FontAwesomeIcon icon={faArrowUp} />
             ) : (
               ""
             )}
-            {column === "name" && order === Order.DESC ? (
+            {column === "endDate" && order === Order.DESC ? (
               <FontAwesomeIcon icon={faArrowDown} />
             ) : (
               ""
