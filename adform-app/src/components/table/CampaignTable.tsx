@@ -61,87 +61,41 @@ export const CampaignTable: React.FC<Props> = ({ campaignsTableData }) => {
     return budget;
   };
 
+  const getArrow = (tableColumn: string) => {
+    if (column === tableColumn && order === Order.ASC) {
+      return <FontAwesomeIcon icon={faArrowUp} />;
+    } else if (column === tableColumn && order === Order.DESC) {
+      return <FontAwesomeIcon icon={faArrowDown} />;
+    }
+  }
+
   return (
     <table className="table campaign-table">
       <thead className="thead-dark">
         <tr>
           <th scope="col" onClick={() => onColumnClick("name")}>
             Name
-            {column === "name" && order === Order.ASC ? (
-              <FontAwesomeIcon icon={faArrowUp} />
-            ) : (
-              ""
-            )}
-            {column === "name" && order === Order.DESC ? (
-              <FontAwesomeIcon icon={faArrowDown} />
-            ) : (
-              ""
-            )}
+            {getArrow("name")}
           </th>
           <th scope="col" onClick={() => onColumnClick("userName")}>
             User Name
-            {column === "userName" && order === Order.ASC ? (
-              <FontAwesomeIcon icon={faArrowUp} />
-            ) : (
-              ""
-            )}
-            {column === "userName" && order === Order.DESC ? (
-              <FontAwesomeIcon icon={faArrowDown} />
-            ) : (
-              ""
-            )}
+            {getArrow("userName")}
           </th>
           <th scope="col" onClick={() => onColumnClick("startDate")}>
             Start Date
-            {column === "startDate" && order === Order.ASC ? (
-              <FontAwesomeIcon icon={faArrowUp} />
-            ) : (
-              ""
-            )}
-            {column === "startDate" && order === Order.DESC ? (
-              <FontAwesomeIcon icon={faArrowDown} />
-            ) : (
-              ""
-            )}
+            {getArrow("startDate")}
           </th>
           <th scope="col" onClick={() => onColumnClick("endDate")}>
             End Date
-            {column === "endDate" && order === Order.ASC ? (
-              <FontAwesomeIcon icon={faArrowUp} />
-            ) : (
-              ""
-            )}
-            {column === "endDate" && order === Order.DESC ? (
-              <FontAwesomeIcon icon={faArrowDown} />
-            ) : (
-              ""
-            )}
+            {getArrow("endDate")}
           </th>
           <th scope="col" onClick={() => onColumnClick("isActive")}>
             Active
-            {column === "isActive" && order === Order.ASC ? (
-              <FontAwesomeIcon icon={faArrowUp} />
-            ) : (
-              ""
-            )}
-            {column === "isActive" && order === Order.DESC ? (
-              <FontAwesomeIcon icon={faArrowDown} />
-            ) : (
-              ""
-            )}
+            {getArrow("isActive")}
           </th>
           <th scope="col" onClick={() => onColumnClick("Budget")}>
             Budget
-            {column === "Budget" && order === Order.ASC ? (
-              <FontAwesomeIcon icon={faArrowUp} />
-            ) : (
-              ""
-            )}
-            {column === "Budget" && order === Order.DESC ? (
-              <FontAwesomeIcon icon={faArrowDown} />
-            ) : (
-              ""
-            )}
+            {getArrow("Budget")}
           </th>
         </tr>
       </thead>
