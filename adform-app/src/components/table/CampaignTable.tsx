@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -67,7 +68,7 @@ export const CampaignTable: React.FC<Props> = ({ campaignsTableData }) => {
     } else if (column === tableColumn && order === Order.DESC) {
       return <FontAwesomeIcon icon={faArrowDown} />;
     }
-  }
+  };
 
   return (
     <table className="table campaign-table">
@@ -119,7 +120,6 @@ export const CampaignTable: React.FC<Props> = ({ campaignsTableData }) => {
                     </span>
                   )}
                 </td>
-                {/* // TODO: Budget */}
                 <td>{thousandsInString(Budget)}</td>
               </tr>
             );

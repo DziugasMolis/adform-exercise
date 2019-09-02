@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { CampaignTable } from "./components/table/CampaignTable";
-import { CampaignTableData } from "./components/table/CampaignTableData";
+import { Layout } from "./components/layout/Layout";
 
 import { Campaign } from "./interfaces/Campaign";
-
-import { Layout } from "./components/layout/Layout";
 import { User } from "./interfaces/User";
+import { CampaignTableData } from "./components/table/CampaignTableData";
 
 import "./App.scss";
 
@@ -34,12 +33,12 @@ const App: React.FC = () => {
     const fetchData = async () => {
       try {
         const campaigns: Campaign[] = await (await fetch(
-          "/assets/campaign.json"
+          "http://localhost:3000/assets/campaign.json"
         )).json();
 
         const userIds: number[] = [];
         campaigns.forEach(campaign => {
-          if (!userIds.indexOf(campaign.userId)) {
+          if (userIds.indexOf(campaign.userId) === -1) {
             userIds.push(campaign.userId);
           }
         });
@@ -53,10 +52,7 @@ const App: React.FC = () => {
         campaigns.forEach(
           ({ userId, id, name, startDate, endDate, Budget }) => {
             const user = users.find(x => x.id === userId);
-            if (
-              new Date(startDate).getTime() <
-              new Date(endDate).getTime()
-            ) {
+            if (new Date(startDate).getTime() < new Date(endDate).getTime()) {
               tableCampaigns.push({
                 id,
                 name,
@@ -71,7 +67,6 @@ const App: React.FC = () => {
         );
         setCampaignTableData(tableCampaigns);
       } catch (error) {
-        console.error(error);
         setStatus(Status.Failed);
       }
     };
